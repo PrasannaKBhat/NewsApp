@@ -17,8 +17,10 @@ import com.loc.newsapp.presentation.onboarding.OnBoardingScreen
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import androidx.compose.foundation.layout.Box
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.loc.newsapp.domain.usecases.AppEntryUseCases
+import com.loc.newsapp.presentation.onboarding.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,23 +28,23 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-     lateinit var appEntryUseCases: AppEntryUseCases
+    lateinit var appEntryUseCases: AppEntryUseCases
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        lifecycleScope.launch {
+     /*   lifecycleScope.launch {
             appEntryUseCases.readAppEntry().collect {
                 Log.d("Test", it.toString())
             }
-        }
+        }*/
         installSplashScreen()
         setContent {
             NewsAppTheme(
                 dynamicColor = false
             ) {
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-                    OnBoardingScreen()
+
                 }
             }
         }
